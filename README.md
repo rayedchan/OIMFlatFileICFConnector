@@ -1,9 +1,9 @@
 OIMFlatFileICFConnector
 =======================
-Version: Oracle Idenity Manager 11g R1
+Version: Oracle Idenity Manager 11g R1  
 This is a sample ICF Connector from Oracle. I have modified the project
 to be used in Netbeans. You can find the original source code and documentation under the original-jdev directory.
-
+  
 Required Jars
 -icf-oim-intg.jar located in $MW_HOME/Oracle_IDM1/server/icf/intg
 -connector-framework.jar

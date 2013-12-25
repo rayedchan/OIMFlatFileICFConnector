@@ -26,4 +26,7 @@ Java Connector Server
 -Add the ICF FlatFile Connector jar to the "bundles" directory of your Java Connector Server.  
 -Include sshFactory.jar in your Java Connector Server lib directory.  
 -Restart Java Connector Server when making changes such as modifying config files or adding new jars.  
--[Optional] Use standalone java client to test ICF FlatFile Connector. The Java Connector must be running.     
+-[Optional] Use standalone java client to test ICF FlatFile Connector. The Java Connector must be running.
+
+__Side Note__
+If you want to modify the functionality of the connector, update the code and build a new jar file. Replace the jar file in the bundles directory of the java connector server and restart the connector server. Depending on the changes you make in the code, you may have to update the metadata using design console.  

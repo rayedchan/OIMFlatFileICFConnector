@@ -13,7 +13,7 @@ After installation, you need to update the FlatFileConnectorServer and FlatFileI
 Sample target system flat file can be found in sample-data directory.      
   
 __Connector Server Requirements__  
-This section does not need to be done if you are following the Quick Connector Installation.
+This section does not need to be done if you are following the Quick Connector Installation section.
   
 Required Jars  
 -icf-oim-intg.jar located in $MW_HOME/Oracle_IDM1/server/icf/intg  

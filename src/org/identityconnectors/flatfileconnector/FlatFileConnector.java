@@ -265,16 +265,49 @@ public class FlatFileConnector implements PoolableConnector,CreateOp,UpdateOp,De
                 
                 HashMap<String,List<String>> attrNameValues = searchResult.get(accountID);
                 Set<String> attrNames = attrNameValues.keySet();
-                for(String attrName:attrNames){
+                for(String attrName:attrNames)
+                {
                     System.out.println("Adding attr "+attrName+" with value "+attrNameValues.get(attrName)+" for accountID "+accountID);
-                    cObjBuilder.addAttribute(attrName,attrNameValues.get(attrName));
+                    
+                    //Special Case to handle status attribute
+                    if(attrName.equalsIgnoreCase(FlatFileUtil.Status))
+                    {
+                        String statusValue = attrNameValues.get(attrName).get(0);
+                        boolean isEnabled = true; //enable by default
+                        
+                        if(statusValue.equalsIgnoreCase("false"))
+                        {
+                            isEnabled = false;
+                        }
+                        
+                        else
+                        {
+                            isEnabled = true;
+                        }
+                        
+                        cObjBuilder.addAttribute(AttributeBuilder.buildEnabled(isEnabled));
+                    }
+                    
+                    //Other attribute
+                    else
+                    {
+                        cObjBuilder.addAttribute(attrName,attrNameValues.get(attrName));
+                    }
                 }
+                
+                //Case: Handle accounts with no status attribute; Enabled by default
+                if(!attrNames.contains(FlatFileUtil.Status))
+                {
+                    cObjBuilder.addAttribute(AttributeBuilder.buildEnabled(true));
+                }
+                
                 cObjBuilder.addAttribute(FlatFileUtil.Incremental_Recon_Attribute, new Date().getTime());
                 cObjBuilder.addAttribute(FlatFileUtil.LatestToken, new Date().getTime());
                 Uid uid = new Uid(accountID);
                 cObjBuilder.setUid(uid);
                 cObjBuilder.setName(uid.getUidValue());
-                ConnectorObject cb = cObjBuilder.build();                 
+                ConnectorObject cb = cObjBuilder.build();  
+                System.out.println("User Account Object" + cb);
                 resultsHandler.handle(cb);
             }            
         }
@@ -343,7 +376,10 @@ public class FlatFileConnector implements PoolableConnector,CreateOp,UpdateOp,De
                         }else if(strSplit[0].equalsIgnoreCase(FlatFileUtil.FirstName)){                            
                             valuesList.add(strSplit[1]);
                             values.put(FlatFileUtil.FirstName, valuesList);                            
-                        }else if(strSplit[0].equalsIgnoreCase(FlatFileUtil.Salutation)){                            
+                        }else if(strSplit[0].equalsIgnoreCase(FlatFileUtil.Status)){                            
+                            valuesList.add(strSplit[1]);
+                            values.put(FlatFileUtil.Status, valuesList);                            
+                        } else if(strSplit[0].equalsIgnoreCase(FlatFileUtil.Salutation)){                            
                             valuesList.add(strSplit[1]);
                             values.put(FlatFileUtil.Salutation, valuesList);                            
                         }

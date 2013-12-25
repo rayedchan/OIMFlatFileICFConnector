@@ -38,6 +38,7 @@ public final class FlatFileUtil {
         public static String salutation = "salutation";
         public static String LOOKUP_RECON_FILE = "/home/mambuga/misc/roles.txt";
         public static String AccountId="AccountId";
+        public static String Status = "__ENABLE__";
         public static String FirstName="FirstName";
         public static String lastName="lastName";
         public static String email="email";

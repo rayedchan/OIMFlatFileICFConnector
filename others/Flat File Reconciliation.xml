@@ -1,0 +1,84 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xl-ddm-data version="2.0.1.0" user="XELSYSADM" database="jdbc:oracle:thin:@localhost:5524/estView.regress.rdbms.dev.us.oracle.com" exported-date="1307546406635" description="FF">
+<scheduledTask repo-type="MDS" name="Flat File Reconciliation" mds-path="/db" mds-file="Flat File Reconciliation.xml">
+	<completeXml>
+		<scheduledTasks xmlns="http://xmlns.oracle.com/oim/scheduler">
+			<task>
+			<name>Flat File Reconciliation</name>
+			<class>oracle.iam.connectors.icfcommon.recon.SearchReconTask</class>
+			<description>Flat File Reconciliation</description>
+			<retry>0</retry>
+			<parameters>
+			  <string-param required="false" encrypted="false" helpText="Filter">Filter</string-param>
+			  <string-param required="false" encrypted="false" helpText="Incremental Recon Date Attribute">Incremental Recon Date Attribute</string-param>
+			  <string-param required="true" encrypted="false" helpText="IT Resource Name">IT Resource Name</string-param>
+			  <string-param required="true" encrypted="false" helpText="Object Type">Object Type</string-param>
+			  <string-param required="false" encrypted="false" helpText="Latest Token">Latest Token</string-param>
+			  <string-param required="true" encrypted="false" helpText="Resource Object Name">Resource Object Name</string-param>
+			  <string-param required="false" encrypted="false" helpText="Scheduled Task Name">Scheduled Task Name</string-param>
+			</parameters>
+		  </task>
+		</scheduledTasks>
+	</completeXml>
+</scheduledTask>
+<Job repo-type="API" name="Flat File Reconciliation">
+		<taskClassName>oracle.iam.connectors.icfcommon.recon.SearchReconTask
+		</taskClassName>
+		<taskKey>42</taskKey>
+		<retrycount>0</retrycount>
+		<taskStatus>false</taskStatus>
+		<jobScheduleType>Periodic</jobScheduleType>
+		<concurrent>false</concurrent>
+		<method>executeJob</method>
+		<lastModifyDate>1311598730876</lastModifyDate>
+		<attributes>
+			<object>
+				<key>IT Resource Name</key>
+				<value type="jobparameter">
+					<name type="string">IT Resource Name</name>
+					<required type="boolean">true</required>
+					<encrypted type="boolean">false</encrypted>
+					<helpText type="string">IT Resource Name</helpText>
+					<dataType type="string">String</dataType>
+					<paramValue type="string">FlatFileITResource</paramValue>
+				</value>
+			</object>
+			<object>
+				<key>Object Type</key>
+				<value type="jobparameter">
+					<name type="string">Object Type</name>
+					<required type="boolean">true</required>
+					<encrypted type="boolean">false</encrypted>
+					<helpText type="string">Object Type</helpText>
+					<dataType type="string">String</dataType>
+					<paramValue type="string">User</paramValue>
+				</value>
+			</object>
+			<object>
+				<key>Resource Object Name</key>
+				<value type="jobparameter">
+					<name type="string">Resource Object Name</name>
+					<required type="boolean">true</required>
+					<encrypted type="boolean">false</encrypted>
+					<helpText type="string">Resource Object Name</helpText>
+					<dataType type="string">String</dataType>
+					<paramValue type="string">FLATFILERESOURCE</paramValue>
+				</value>
+			</object>
+		</attributes>
+		<source-scope type="scheduledTask"
+			name="Flat File Reconciliation" />
+		<taskName scheduledTask="Flat File Reconciliation" />
+		<Trigger repo-type="API"
+			name="Flat File Reconciliation">
+			<startTime>1312115282000</startTime>
+			<repeatInterval>600000</repeatInterval>
+			<nextFireTime>1312115282000</nextFireTime>
+			<repeatCount>-1</repeatCount>
+			<lastModifyDate>1311598730922</lastModifyDate>
+			<jobName>Flat File Reconciliation</jobName>
+			<frequencyType />
+		</Trigger>
+	</Job>
+	
+</xl-ddm-data>

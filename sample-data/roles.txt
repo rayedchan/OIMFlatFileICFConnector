@@ -1,0 +1,7 @@
+User
+Admin
+Programmer
+Engineer
+Analyst
+HR
+Manager

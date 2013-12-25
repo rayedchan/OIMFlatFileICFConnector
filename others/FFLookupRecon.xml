@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scheduledTasks xmlns="http://xmlns.oracle.com/oim/scheduler">
+<task>
+<name>FFLookupRecon</name>
+<class>oracle.iam.connectors.icfcommon.recon.LookupReconTask</class>
+<description>Gets all the roles as specified in the target machine</description>
+<retry>5</retry>
+<parameters>
+<string-param required="true" encrypted="false" helpText="IT Resource Name">IT Resource Name</string-param>
+<string-param required="true" encrypted="false" helpText="Object Type">Object Type</string-param>
+<string-param required="true" encrypted="false" helpText="Lookup Name">Lookup Name</string-param>
+<string-param required="true" encrypted="false" helpText="Code Key Attribute">Code Key Attribute</string-param>
+<string-param required="true" encrypted="false" helpText="Decode Attribute">Decode Attribute</string-param>
+<string-param required="false" encrypted="false" helpText="Filter">Filter</string-param>
+</parameters>
+</task>
+</scheduledTasks>
